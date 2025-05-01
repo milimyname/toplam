@@ -5,15 +5,18 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
+		"dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
+		"dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
+		"dev:zero-cache": "zero-cache-dev -p src/lib/zero/schema.ts",
 		"build": "vite build",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"prepare": "svelte-kit sync || echo ''",
+		"preview": "vite preview",
+		"test": "npm run test:unit -- --run",
+		"test:unit": "vitest"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
@@ -24,7 +27,6 @@
 		"@tailwindcss/vite": "^4.0.0",
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/svelte": "^5.2.4",
-		"@triplit/cli": "^1.0.32",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
@@ -42,8 +44,11 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"@triplit/svelte": "^1.0.24",
+		"@rocicorp/zero": "^0.18.2025042300",
 		"bits-ui": "^1.3.19",
-		"peerjs": "^1.5.4"
+		"peerjs": "^1.5.4",
+		"sst": "3.14.11",
+		"svelte-kit-sst": "2.43.5",
+		"zero-svelte": "^0.3.3"
 	}
 }
